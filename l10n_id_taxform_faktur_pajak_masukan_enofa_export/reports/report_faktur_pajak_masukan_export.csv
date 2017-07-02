@@ -1,0 +1,4 @@
+FM,KD_JENIS_TRANSAKSI,FG_PENGGANTI,NOMOR_FAKTUR,MASA_PAJAK,TAHUN_PAJAK,TANGGAL_FAKTUR,NPWP,NAMA,ALAMAT_LENGKAP,JUMLAH_DPP,JUMLAH_PPN,JUMLAH_PPNBM,IS_CREDITABLE
+{% for o in objects %}\
+"FM","${o.enofa_jenis_transaksi}","${o.enofa_fg_pengganti}","${o.enofa_nomor_dokumen}","${o.enofa_masa_pajak}","${o.enofa_tahun_pajak}","${o.enofa_tanggal_dokumen}","${o.enofa_npwp}","${o.enofa_nama}","${o.enofa_alamat_lengkap}","${o.enofa_jumlah_dpp}","${o.enofa_jumlah_ppn}","${o.enofa_jumlah_ppnbm}","${o.enofa_is_creditable}"
+{% end %}\
