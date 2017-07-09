@@ -1,0 +1,10 @@
+FK,KD_JENIS_TRANSAKSI,FG_PENGGANTI,NOMOR_FAKTUR,MASA_PAJAK,TAHUN_PAJAK,TANGGAL_FAKTUR,NPWP,NAMA,ALAMAT_LENGKAP,JUMLAH_DPP,JUMLAH_PPN,JUMLAH_PPNBM,ID_KETERANGAN_TAMBAHAN,FG_UANG_MUKA,UANG_MUKA_DPP,UANG_MUKA_PPN,UANG_MUKA_PPNBM,REFERENSI
+LT,NPWP,NAMA,JALAN,BLOK,NOMOR,RT,RW,KECAMATAN,KELURAHAN,KABUPATEN,PROPINSI,KODE_POS,NOMOR_TELEPON,,,,,
+OF,KODE_OBJEK,NAMA,HARGA_SATUAN,JUMLAH_BARANG,HARGA_TOTAL,DISKON,DPP,PPN,TARIF_PPNBM,PPNBM,,,,,,,,
+{% for fp in objects %}\
+"FM","${fp.enofa_jenis_transaksi}","${fp.enofa_fg_pengganti}","${fp.enofa_nomor_dokumen}","${fp.enofa_masa_pajak}","${fp.enofa_tahun_pajak}","${fp.enofa_tanggal_dokumen}","${fp.enofa_npwp}","${fp.enofa_nama}","${fp.enofa_alamat_lengkap}","${fp.enofa_jumlah_dpp}","${fp.enofa_jumlah_ppn}","${fp.enofa_jumlah_ppnbm}","${fp.enofa_id_keterangan_tambahan}","${fp.enofa_uang_muka_dpp}","${fp.enofa_uang_muka_ppn}","${fp.enofa_uang_muka_ppnbm}"
+{% if fp.faktur_pajak_line_ids %}{% for detail in fp.faktur_pajak_line_ids %}\
+"OF,"${detail.enofa_kode_objek}","${detail.enofa_nama}","${detail.enofa_harga_satuan}","${detail.enofa_jumlah_barang}","${detail.enofa_harga_total}","${detail.enofa_diskon}","${detail.enofa_dpp}","${detail.enofa_ppn}","${detail.enofa_tarif_ppnbm}","${detail.enofa_ppnbm}",,,,,,,
+{% end %}\
+{% end %}\
+{% end %}\
