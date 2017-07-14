@@ -1,0 +1,4 @@
+RM,NPWP,NAMA,KD_JENIS_TRANSAKSI,FG_PENGGANTI,NOMOR_FAKTUR,TANGGAL_FAKTUR,NOMOR_DOKUMEN_RETUR,TANGGAL_RETUR,MASA_PAJAK_RETUR,TAHUN_PAJAK_RETUR,NILAI_RETUR_DPP,NILAI_RETUR_PPN,NILAI_RETUR_PPNBM
+{% for o in objects %}\
+"RM","${o.enofa_npwp}","${o.enofa_nama}","${o.enofa_jenis_transaksi}","${o.enofa_fg_pengganti}","${o.enofa_nomor_dokumen_balik}","${o.enofa_tanggal_dokumen_balik}","${o.enofa_nomor_dokumen}","${o.enofa_tanggal_dokumen}","${o.enofa_masa_pajak}","${o.enofa_tahun_pajak}","${o.enofa_jumlah_dpp}","${o.enofa_jumlah_ppn}","${o.enofa_jumlah_ppnbm}"
+{% end %}\
