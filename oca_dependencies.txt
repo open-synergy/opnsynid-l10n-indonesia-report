@@ -15,3 +15,4 @@
 # sale-workflow https://github.com/OCA/sale-workflow branchname
 aeroo_reports https://github.com/aeroo/aeroo_reports master
 opnsynid-l10n-indonesia https://github.com/open-synergy/opnsynid-l10n-indonesia 8.0
+opnsynid-server-tools https://github.com/open-synergy/opnsynid-server-tools 8.0
