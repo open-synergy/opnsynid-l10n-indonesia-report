@@ -10,8 +10,7 @@
     "category": "Localization",
     "depends": [
         "l10n_id_taxform_bukti_potong_pph_23",
-        "report_aeroo",
-        "base_amount_to_text"
+        "report_aeroo"
     ],
     "data": [
         "reports/report_bukti_potong_pph_23_out.xml",
