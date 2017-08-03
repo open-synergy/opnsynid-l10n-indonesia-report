@@ -2,11 +2,11 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-==========================================
-Indonesia - Report for Bukti Potong PPH 23
-==========================================
+=======================================================
+Indonesia - Report for Bukti Potong PPH 23(F.1.1.33.06)
+=======================================================
 
-This module add Bukti Potong PPH 23 report.
+This module add Bukti Potong PPH 23(F.1.1.33.06) report.
 
 
 Installation
@@ -18,7 +18,7 @@ To install this module, you need to:
 2.  Add the path to this repository in your configuration (addons-path)
 3.  Update the module list
 4.  Go to menu *Setting -> Modules -> Local Modules*
-5.  Search For *Indonesia - Bukti Potong PPH 23*
+5.  Search For *Indonesia - Report for Bukti Potong PPH 23(F.1.1.33.06)*
 6.  Install the module
 
 Configuration
