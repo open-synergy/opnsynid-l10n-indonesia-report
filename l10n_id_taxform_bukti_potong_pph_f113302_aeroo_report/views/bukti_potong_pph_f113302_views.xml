@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2017 OpenSynergy Indonesia
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="bukti_potong_pph_f113302_view_form">
+            <field name="name">Print Button : Bukti Potong PPh (F.1.1.33.02) Form</field>
+            <field name="model">l10n_id.bukti_potong_pph_f113302_out</field>
+            <field name="inherit_id" ref="l10n_id_taxform_bukti_potong_pph_f113302.bukti_potong_pph_f113302_out_view_form"/>
+            <field name="mode">extension</field>
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="//field[@name='state']" position="before">
+                        <button name="%(l10n_id_taxform_bukti_potong_pph_f113302_aeroo_report.report_bukti_potong_pph_f113302)d" type="action" string="PPh 21(f.1.1.33.02)" icon="gtk-print" states="done"/>
+                    </xpath>
+                </data>
+            </field>
+        </record>
+    </data>
+</openerp>
