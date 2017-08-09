@@ -11,7 +11,7 @@
             <field name="arch" type="xml">
                 <data>
                     <xpath expr="//field[@name='state']" position="before">
-                        <button name="%(l10n_id_taxform_bukti_potong_pph_f113306_aeroo_report.report_bukti_potong_pph_f113306)d" type="action" string="PPh 23(f.1.1.33.06)" icon="gtk-print" states="done"/>
+                        <button name="%(l10n_id_taxform_bukti_potong_pph_f113306_aeroo_report.report_bukti_potong_pph_f113306)d" type="action" string="Print" icon="gtk-print" states="confirm,done"/>
                     </xpath>
                 </data>
             </field>
