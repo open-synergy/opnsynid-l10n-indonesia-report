@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record id="report_bukti_potong_pph_f113309" model="ir.actions.report.xml">
+            <field name="name">Bukti Potong PPH Final 4 (f.1.33.09)</field>
+            <field name="type">ir.actions.report.xml</field>
+            <field name="model">l10n_id.bukti_potong_pph_f113309_out</field>
+            <field name="report_name">aeroo_reportBuktiPotongPphF113309_PDF</field>
+            <field name="report_type">aeroo</field>
+            <field name="in_format">oo-odt</field>
+            <field name="out_format" ref="report_aeroo.report_mimetypes_pdf_odt"/>
+            <field name="parser_loc">l10n_id_taxform_bukti_potong_pph_common/reports/report_taxform_bukti_potong_pph_common.py</field>
+            <field name="report_rml">l10n_id_taxform_bukti_potong_pph_f113309_aeroo_report/reports/report_bukti_potong_pph_f113309.odt</field>
+            <field name="parser_state">loc</field>
+            <field name="tml_source">file</field>
+        </record>    
+    </data>
+</openerp>
+
