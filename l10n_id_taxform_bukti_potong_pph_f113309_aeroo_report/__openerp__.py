@@ -4,7 +4,7 @@
 {
     "name": "Indonesia - Report for Bukti Potong PPH "
             "Final 4 (F.1.1.33.09)",
-    "version": "8.0.1.1.0",
+    "version": "8.0.1.2.0",
     "license": "AGPL-3",
     "author": "OpenSynergy Indonesia",
     "website": "https://opensynergy-indonesia.com",
