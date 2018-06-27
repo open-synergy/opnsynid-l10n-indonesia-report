@@ -14,6 +14,11 @@ addons:
       - python-serial
       - python-yaml
       - python-cairo
+      - python3
+      - python3-pip
+      # for aeroo
+      - cups
+      - libcups2-dev
 
 env:
   global:
@@ -31,9 +36,7 @@ install:
   - if [[ ${TESTS} == "1" ]]; then sudo apt-get -qy install libreoffice; fi
   - if [[ ${TESTS} == "1" ]]; then sudo apt-get -qy install python-genshi; fi
   - if [[ ${TESTS} == "1" ]]; then sudo apt-get -qy install python-cairo; fi
-  - if [[ ${TESTS} == "1" ]]; then sudo apt-get -qy install python-uno; fi
   - if [[ ${TESTS} == "1" ]]; then sudo apt-get -qy install python-cups; fi
-  - if [[ ${TESTS} == "1" ]]; then sudo apt-get -qy install python-openoffice; fi
   - git clone --depth=1 https://github.com/OCA/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
   - sed -i 's/manifest_required_author\=.*/manifest_required_author="OpenSynergy Indonesia"/g' ${HOME}/maintainer-quality-tools/travis/cfg/travis_run_pylint_pr.cfg
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
