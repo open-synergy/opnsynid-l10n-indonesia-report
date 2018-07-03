@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record id="djbc_kb_lap_mesin_peralatan_ods_report" model="ir.actions.report.xml">
+            <field name="name">Lap. Mutasi Mesin Peralatan</field>
+            <field name="type">ir.actions.report.xml</field>
+            <field name="model">l10n_id.djbc_kb_lap_mutasi_mesin_peralatan</field>
+            <field name="report_name">aeroo_reportLapMesinPeralatanOds</field>
+            <field name="report_type">aeroo</field>
+            <field name="in_format">oo-ods</field>
+            <field name="out_format" ref="report_aeroo.report_mimetypes_ods_ods"/>
+            <field name="parser_loc">l10n_id_djbc_kb_lap_mutasi_mesin_peralatan_aeroo_report/reports/report_lap_mutasi_mesin_peralatan.py</field>
+            <field name="report_rml">l10n_id_djbc_kb_lap_mutasi_mesin_peralatan_aeroo_report/reports/report_lap_mutasi_mesin_peralatan.ods</field>
+            <field name="parser_state">loc</field>
+            <field name="tml_source">file</field>
+        </record>  
+
+        <record id="djbc_kb_lap_mesin_peralatan_xls_report" model="ir.actions.report.xml">
+            <field name="name">Lap. Mutasi Mesin Peralatan</field>
+            <field name="type">ir.actions.report.xml</field>
+            <field name="model">l10n_id.djbc_kb_lap_mutasi_mesin_peralatan</field>
+            <field name="report_name">aeroo_reportLapMesinPeralatanXls</field>
+            <field name="report_type">aeroo</field>
+            <field name="in_format">oo-ods</field>
+            <field name="out_format" ref="report_aeroo.report_mimetypes_xls_odt"/>
+            <field name="parser_loc">l10n_id_djbc_kb_lap_mutasi_mesin_peralatan_aeroo_report/reports/report_lap_mutasi_mesin_peralatan.py</field>
+            <field name="report_rml">l10n_id_djbc_kb_lap_mutasi_mesin_peralatan_aeroo_report/reports/report_lap_mutasi_mesin_peralatan.ods</field>
+            <field name="parser_state">loc</field>
+            <field name="tml_source">file</field>
+        </record>  
+    </data>
+</openerp>
+
