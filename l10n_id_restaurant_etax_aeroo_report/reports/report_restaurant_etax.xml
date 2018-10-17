@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record id="l10n_id_restaurant_etax_csv_aeroo_report" model="ir.actions.report.xml">
+            <field name="name">Etax: Restaurant CSV</field>
+            <field name="type">ir.actions.report.xml</field>
+            <field name="model">pos.order</field>
+            <field name="report_name">aeroo_reportRestaurantEtaxCSV</field>
+            <field name="report_type">aeroo</field>
+            <field name="in_format">oo-ods</field>
+            <field name="out_format" ref="report_aeroo.report_mimetypes_csv_ods"/>
+            <field name="report_rml">l10n_id_restaurant_etax_aeroo_report/reports/report_restaurant_etax.ods</field>
+            <field name="parser_loc">l10n_id_restaurant_etax_aeroo_report/reports/report_restaurant_etax.py</field>
+            <field name="parser_state">loc</field>
+            <field name="tml_source">file</field>
+        </record> 
+        <record id="l10n_id_restaurant_etax_ods_aeroo_report" model="ir.actions.report.xml">
+            <field name="name">Etax: Restaurant ODS</field>
+            <field name="type">ir.actions.report.xml</field>
+            <field name="model">pos.order</field>
+            <field name="report_name">aeroo_reportRestaurantEtaxODS</field>
+            <field name="report_type">aeroo</field>
+            <field name="in_format">oo-ods</field>
+            <field name="out_format" ref="report_aeroo.report_mimetypes_ods_ods"/>
+            <field name="report_rml">l10n_id_restaurant_etax_aeroo_report/reports/report_restaurant_etax.ods</field>
+            <field name="parser_loc">l10n_id_restaurant_etax_aeroo_report/reports/report_restaurant_etax.py</field>
+            <field name="parser_state">loc</field>
+            <field name="tml_source">file</field>
+        </record>  
+        <record id="l10n_id_restaurant_etax_xls_aeroo_report" model="ir.actions.report.xml">
+            <field name="name">Etax: Restaurant XLS</field>
+            <field name="type">ir.actions.report.xml</field>
+            <field name="model">pos.order</field>
+            <field name="report_name">aeroo_reportRestaurantEtaxXLS</field>
+            <field name="report_type">aeroo</field>
+            <field name="in_format">oo-ods</field>
+            <field name="out_format" ref="report_aeroo.report_mimetypes_xls_odt"/>
+            <field name="report_rml">l10n_id_restaurant_etax_aeroo_report/reports/report_restaurant_etax.ods</field>
+            <field name="parser_loc">l10n_id_restaurant_etax_aeroo_report/reports/report_restaurant_etax.py</field>
+            <field name="parser_state">loc</field>
+            <field name="tml_source">file</field>
+        </record>  
+    </data>
+</openerp>
+

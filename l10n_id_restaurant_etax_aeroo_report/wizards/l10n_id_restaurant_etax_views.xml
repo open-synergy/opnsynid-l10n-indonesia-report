@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2018 OpenSynergy Indonesia
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<openerp>
+    <data>
+        <record id="l10n_id_restaurant_etax_view_form" model="ir.ui.view">
+            <field name="name">l10n_id.restaurant_etax form</field>
+            <field name="model">l10n_id.restaurant_etax</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group name="group_1" colspan="4" col="2">
+                        <field name="date_start"/>
+                        <field name="date_end"/>
+                        <field name="config_ids" widget="many2many_tags"/>
+                        <field name="output_format"/>
+                    </group>
+                    <footer>
+                        <button name="action_print"
+                            type="object"
+                            string="Print"
+                            class="oe_hightlight"/>
+                        <button special="cancel"
+                                string="Cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        
+        <record id="l10n_id_restaurant_etax_view_action" model="ir.actions.act_window">
+            <field name="name">E-Tax: Restaurant</field>
+            <field name="res_model">l10n_id.restaurant_etax</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="l10n_id_restaurant_etax_view_form"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem
+            id="l10n_id_restaurant_etax_view_menu"
+            name="E-Tax: Restaurant"
+            parent="point_of_sale.menu_point_of_sale"
+            action="l10n_id_restaurant_etax_view_action"
+            sequence="99"
+        />
+    </data>
+</openerp>
