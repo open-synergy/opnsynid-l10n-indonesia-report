@@ -94,19 +94,20 @@ class Parser(report_sxw.rml_parse):
             for data_id in obj_pos_order.browse(
                 self.cr, self.uid, data_ids
             ):
-                tgl_transaksi =\
-                    self._convert_datetime_from_utc(
-                        data_id.date_order)
-                am_total = data_id.amount_total
-                am_tax = data_id.amount_tax
-                amount = (am_total - am_tax)
+                if data_id.amount_total > 0:
+                    tgl_transaksi =\
+                        self._convert_datetime_from_utc(
+                            data_id.date_order)
+                    am_total = data_id.amount_total
+                    am_tax = data_id.amount_tax
+                    amount = (am_total - am_tax)
 
-                res = {
-                    "tgl_transaksi": tgl_transaksi,
-                    "sales_no": data_id.pos_reference,
-                    "amount": amount,
-                    "service_charge": 0,
-                    "receipt_no": data_id.pos_reference
-                }
-                data.append(res)
+                    res = {
+                        "tgl_transaksi": tgl_transaksi,
+                        "sales_no": data_id.pos_reference,
+                        "amount": amount,
+                        "service_charge": 0,
+                        "receipt_no": data_id.pos_reference
+                    }
+                    data.append(res)
         return data
