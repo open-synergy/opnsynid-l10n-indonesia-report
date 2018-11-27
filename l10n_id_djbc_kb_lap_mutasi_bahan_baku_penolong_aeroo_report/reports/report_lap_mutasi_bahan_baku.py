@@ -39,10 +39,10 @@ class Parser(report_sxw.rml_parse):
 
         if data_ids:
             for data_id in obj_data.browse(self.cr, self.uid, data_ids):
-                product_id = data.product_id
+                product_id = data_id.product_id
                 product_name = product_id and product_id.name or "-"
 
-                uom_id = data.uom_id
+                uom_id = data_id.uom_id
                 uom_name = uom_id and uom_id.name or "-"
 
                 res = {
