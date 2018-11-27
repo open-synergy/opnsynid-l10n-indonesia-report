@@ -30,15 +30,17 @@ class Parser(report_sxw.rml_parse):
         no = 1
 
         criteria = [
-            # ("tgl_penerimaan", ">=", self.date_start),
-            # ("tgl_penerimaan", "<=", self.date_end),
-            # ("warehouse_id", "in", self.warehouse_ids)
+            ("warehouse_id", "in", self.warehouse_ids)
         ]
 
         data_ids = obj_data.search(self.cr, self.uid, criteria)
 
         if data_ids:
-            for data_id in obj_data.browse(self.cr, self.uid, data_ids):
+            context = {
+                "date_start": self.date_start,
+                "date_end": self.date_end
+            }
+            for data_id in obj_data.browse(self.cr, self.uid, data_ids, context):
                 product_id = data_id.product_id
                 product_name = product_id and product_id.name or "-"
 
