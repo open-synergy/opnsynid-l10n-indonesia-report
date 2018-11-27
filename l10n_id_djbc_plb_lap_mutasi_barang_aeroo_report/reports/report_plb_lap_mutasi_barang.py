@@ -24,6 +24,7 @@ class Parser(report_sxw.rml_parse):
         self.form = data["form"]
         self.date_start = self.form["date_start"]
         self.date_end = self.form["date_end"]
+        self.warehouse_ids = self.form["warehouse_ids"]
         return super(Parser, self).set_context(objects, data, ids, report_type)
 
     def _get_date_start(self):
@@ -55,9 +56,7 @@ class Parser(report_sxw.rml_parse):
         no = 1
 
         criteria = [
-            # ("tgl_penerimaan", ">=", self.date_start),
-            # ("tgl_penerimaan", "<=", self.date_end),
-            # ("warehouse_id", "in", self.warehouse_ids)
+            ("warehouse_id", "in", self.warehouse_ids)
         ]
 
         data_ids = obj_data.search(self.cr, self.uid, criteria)
