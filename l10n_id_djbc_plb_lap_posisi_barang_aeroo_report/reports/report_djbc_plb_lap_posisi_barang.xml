@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record id="djbc_plb_lap_posisi_barang_ods_report" model="ir.actions.report.xml">
+            <field name="name">Lap. PLB Posisi Barang</field>
+            <field name="type">ir.actions.report.xml</field>
+            <field name="model">l10n_id.djbc_plb_lap_posisi_barang</field>
+            <field name="report_name">aeroo_reportPlbLapPosisiBarangOds</field>
+            <field name="report_type">aeroo</field>
+            <field name="in_format">oo-ods</field>
+            <field name="out_format" ref="report_aeroo.report_mimetypes_ods_ods"/>
+            <field name="parser_loc">l10n_id_djbc_plb_lap_posisi_barang_aeroo_report/reports/report_plb_lap_posisi_barang.py</field>
+            <field name="report_rml">l10n_id_djbc_plb_lap_posisi_barang_aeroo_report/reports/report_plb_lap_posisi_barang.ods</field>
+            <field name="parser_state">loc</field>
+            <field name="tml_source">file</field>
+        </record>
+
+        <record id="djbc_plb_lap_posisi_barang_xls_report" model="ir.actions.report.xml">
+            <field name="name">Lap. PLB Posisi Barang</field>
+            <field name="type">ir.actions.report.xml</field>
+            <field name="model">l10n_id.djbc_plb_lap_posisi_barang</field>
+            <field name="report_name">aeroo_reportPlbLapPosisiBarangXls</field>
+            <field name="report_type">aeroo</field>
+            <field name="in_format">oo-ods</field>
+            <field name="out_format" ref="report_aeroo.report_mimetypes_xls_odt"/>
+            <field name="parser_loc">l10n_id_djbc_plb_lap_posisi_barang_aeroo_report/reports/report_plb_lap_posisi_barang.py</field>
+            <field name="report_rml">l10n_id_djbc_plb_lap_posisi_barang_aeroo_report/reports/report_plb_lap_posisi_barang.ods</field>
+            <field name="parser_state">loc</field>
+            <field name="tml_source">file</field>
+        </record>
+    </data>
+</openerp>
