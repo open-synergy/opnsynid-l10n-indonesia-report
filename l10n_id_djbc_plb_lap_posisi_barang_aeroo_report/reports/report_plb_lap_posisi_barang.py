@@ -126,9 +126,9 @@ class Parser(report_sxw.rml_parse):
                     data.out_uom_id.name or "",
                     "out_cost": data.out_cost or "",
                     "total_quantity": show_bal and
-                    data.total_quantity or "",
+                    data.total_quantity or 0.0,
                     "total_cost": show_bal and
-                    data.total_cost or "",
+                    data.total_cost or 0.0,
                 }
                 result.append(res)
                 index += 1
