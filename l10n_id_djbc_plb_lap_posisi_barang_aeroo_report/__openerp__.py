@@ -5,7 +5,7 @@
 {
     "name": "Indonesia - Aeroo Report for DJBC PLB "
             "Laporan Posisi Barang",
-    "version": "8.0.1.0.1",
+    "version": "8.0.1.0.2",
     "license": "AGPL-3",
     "author": "OpenSynergy Indonesia",
     "website": "https://opensynergy-indonesia.com",
