@@ -8,6 +8,7 @@ from openerp.report import report_sxw
 
 class Parser(report_sxw.rml_parse):
 
+    # pylint: disable=locally-disabled, old-api7-method-defined
     def __init__(self, cr, uid, name, context):
         super(Parser, self).__init__(cr, uid, name, context)
         self.list_config = []
