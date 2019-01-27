@@ -80,7 +80,7 @@ class Parser(report_sxw.rml_parse):
             tup_final_lot_ids = "(%s)" % (final_lot_ids[0])
         else:
             tup_final_lot_ids = str(tuple(final_lot_ids))
-
+        # pylint: disable=locally-disabled, sql-injection
         sql = """
         SELECT  a.document_type_id AS in_document_type_id,
                 a.document_type_name AS in_document_type_name,
