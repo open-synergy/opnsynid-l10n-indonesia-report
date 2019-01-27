@@ -2,9 +2,9 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-============================================================
+=============================================================
 Indonesia - Report for Bukti Potong PPH Final 4 (F.1.1.33.09)
-============================================================
+=============================================================
 
 This module add Bukti Potong PPH Final 4 (F.1.1.33.09) report.
 
