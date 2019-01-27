@@ -2,9 +2,9 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-=============================================
+===============================================
 Indonesia - Faktur Pajak Keluaran E-Nofa Export
-=============================================
+===============================================
 
 Export faktur pajak keluaran to E-Nofa using aeroo report
 
