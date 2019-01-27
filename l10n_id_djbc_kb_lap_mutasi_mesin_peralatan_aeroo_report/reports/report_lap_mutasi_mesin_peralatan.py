@@ -40,7 +40,8 @@ class Parser(report_sxw.rml_parse):
                 "date_start": self.date_start,
                 "date_end": self.date_end
             }
-            for data_id in obj_data.browse(self.cr, self.uid, data_ids, context):
+            for data_id in obj_data.browse(
+                    self.cr, self.uid, data_ids, context):
                 product_id = data_id.product_id
                 product_name = product_id and product_id.name or "-"
 
