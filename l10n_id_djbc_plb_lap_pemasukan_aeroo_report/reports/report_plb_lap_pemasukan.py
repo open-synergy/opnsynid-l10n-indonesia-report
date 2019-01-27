@@ -5,7 +5,10 @@
 import time
 from openerp.report import report_sxw
 import pytz
+import logging
 from datetime import datetime
+
+_logger = logging.getLogger(__name__)
 
 
 class Parser(report_sxw.rml_parse):
@@ -16,21 +19,18 @@ class Parser(report_sxw.rml_parse):
         self.localcontext.update({
             "time": time,
             "get_data": self._get_data,
-            "get_pemilik_barang": self._get_pemilik_barang,
             "get_date_start": self._get_date_start,
             "get_date_end": self._get_date_end,
+            "convert_datetime_utc": self._convert_datetime_utc,
         })
 
     def set_context(self, objects, data, ids, report_type=None):
         self.form = data["form"]
         self.date_start = self.form["date_start"]
         self.date_end = self.form["date_end"]
-        self.partner_id = self.form["partner_id"][0]
-        self.pemilik_barang = self.form["partner_id"][1]
+        self.warehouse_ids = self.form["warehouse_ids"]
+        _logger.info(str(self.warehouse_ids))
         return super(Parser, self).set_context(objects, data, ids, report_type)
-
-    def _get_pemilik_barang(self):
-        return self.pemilik_barang
 
     def _get_date_start(self):
         return self._convert_datetime_utc(self.date_start)
@@ -48,45 +48,43 @@ class Parser(report_sxw.rml_parse):
             else:
                 tz = pytz.utc
             convert_utc = pytz.utc.localize(convert_dt).astimezone(tz)
-            format_utc = convert_utc.strftime("%d %B %Y")
+            format_utc = convert_utc.strftime("%d-%m-%Y %H:%M:%S")
 
             return format_utc
         else:
             return "-"
 
     def _get_data(self):
-        data = []
+        result = []
         obj_data = self.pool.get(
             "l10n_id.djbc_plb_lap_pemasukan")
-        no = 1
 
         criteria = [
             ("tgl_penerimaan", ">=", self.date_start),
             ("tgl_penerimaan", "<=", self.date_end),
-            ("pemilik_barang", "=", self.partner_id)
+            ("warehouse_id", "in", self.warehouse_ids)
         ]
 
         data_ids = obj_data.search(self.cr, self.uid, criteria)
 
         if data_ids:
-            for data_id in obj_data.browse(self.cr, self.uid, data_ids):
+            for no, data in enumerate(
+                    obj_data.browse(self.cr, self.uid, data_ids)):
                 res = {
-                    "no": no,
-                    "jenis_dokumen": data_id.jenis_dokumen,
-                    "no_dokumen": data_id.no_dokumen,
-                    "tgl_dokumen": data_id.tgl_dokumen,
-                    "no_penerimaan": data_id.no_penerimaan,
-                    "tgl_penerimaan": data_id.tgl_penerimaan,
-                    "pengirim": data_id.pengirim,
-                    "kode_barang": data_id.kode_barang,
-                    "nama_barang": data_id.nama_barang,
-                    "jumlah": data_id.jumlah,
-                    "satuan": data_id.satuan,
-                    "nilai": data_id.nilai,
-                    "pemilik_barang": data_id.pemilik_barang,
+                    "no": no + 1,
+                    "jenis_dokumen": data.jenis_dokumen,
+                    "no_dokumen": data.no_dokumen,
+                    "tgl_dokumen": data.tgl_dokumen,
+                    "no_penerimaan": data.no_penerimaan,
+                    "tgl_penerimaan": data.tgl_penerimaan,
+                    "pengirim": data.pengirim,
+                    "kode_barang": data.kode_barang,
+                    "nama_barang": data.nama_barang,
+                    "jumlah": data.jumlah,
+                    "satuan": data.satuan,
+                    "nilai": data.nilai,
+                    "pemilik_barang": data.pemilik_barang,
                     "kondisi_barang": "-"
                 }
-                data.append(res)
-                no += 1
-
-        return data
+                result.append(res)
+        return result
