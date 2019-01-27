@@ -140,6 +140,7 @@ class Parser(report_sxw.rml_parse):
             ON a.lot_id = c.lot_id
         WHERE a.lot_id IN %s
         """ % (self.date_end, self.date_end, tup_final_lot_ids)
+        # pylint: disable=locally-disabled, sql-injection
         self.cr.execute(sql)
         datas = self.cr.dictfetchall()
         if len(datas) > 0:
