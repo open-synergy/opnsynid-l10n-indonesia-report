@@ -1,9 +1,10 @@
 language: python
-sudo: true
 cache: pip
 
 python:
   - "2.7"
+
+dist: trusty
 
 addons:
   apt:
