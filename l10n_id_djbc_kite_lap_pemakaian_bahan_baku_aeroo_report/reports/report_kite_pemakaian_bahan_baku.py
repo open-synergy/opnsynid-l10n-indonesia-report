@@ -58,7 +58,7 @@ class Parser(report_sxw.rml_parse):
     def _get_data(self):
         result = []
         obj_data = self.pool.get(
-            "l10n_id.lap_kite_pemakaian_bahan_baku")
+            "l10n_id.lap_kite_pemakaian_bahan_baku_union")
 
         criteria = [
             ("tgl_pengeluaran", ">=", self.date_start),
