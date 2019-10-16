@@ -26,7 +26,7 @@ class Parser(report_sxw.rml_parse):
     def _get_data(self):
         data = []
         obj_data = self.pool.get(
-            "l10n_id.djbc_kb_lap_pemasukan")
+            "l10n_id.djbc_kb_lap_mutasi_reject_scrap")
         no = 1
 
         criteria = [
