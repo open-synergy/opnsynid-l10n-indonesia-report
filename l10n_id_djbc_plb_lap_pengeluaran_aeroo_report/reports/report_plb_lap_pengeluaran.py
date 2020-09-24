@@ -84,6 +84,7 @@ class Parser(report_sxw.rml_parse):
                     "jumlah": data.jumlah,
                     "satuan": data.satuan,
                     "nilai": data.nilai,
+                    "nilai_so": data.nilai_so,
                     "pemilik_barang": data.pemilik_barang,
                     "kondisi_barang": "-"
                 }
