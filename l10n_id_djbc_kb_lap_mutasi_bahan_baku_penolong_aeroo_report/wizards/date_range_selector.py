@@ -11,29 +11,29 @@ class KBLapMutasiBahanBakuWizard(models.TransientModel):
     @api.multi
     def action_print_xls(self):
         datas = {}
-        datas['form'] = self.read()[0]
+        datas["form"] = self.read()[0]
         context = {
             "date_start": self.date_start,
             "date_end": self.date_end,
         }
         return {
-            'type': 'ir.actions.report.xml',
-            'report_name': "aeroo_reportLapMutasiBahanBakuXls",
-            'datas': datas,
-            'context': context,
+            "type": "ir.actions.report.xml",
+            "report_name": "aeroo_reportLapMutasiBahanBakuXls",
+            "datas": datas,
+            "context": context,
         }
 
     @api.multi
     def action_print_ods(self):
         datas = {}
-        datas['form'] = self.read()[0]
+        datas["form"] = self.read()[0]
         context = {
             "date_start": self.date_start,
             "date_end": self.date_end,
         }
         return {
-            'type': 'ir.actions.report.xml',
-            'report_name': "aeroo_reportLapMutasiBahanBakuOds",
-            'datas': datas,
-            'context': context,
+            "type": "ir.actions.report.xml",
+            "report_name": "aeroo_reportLapMutasiBahanBakuOds",
+            "datas": datas,
+            "context": context,
         }

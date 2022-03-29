@@ -2,11 +2,12 @@
 # Copyright 2018 OpenSynergy Indonesia
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-import time
-from openerp.report import report_sxw
-import pytz
 import logging
+import time
 from datetime import datetime
+
+import pytz
+from openerp.report import report_sxw
 
 _logger = logging.getLogger(__name__)
 
@@ -17,13 +18,15 @@ class Parser(report_sxw.rml_parse):
     def __init__(self, cr, uid, name, context):
         super(Parser, self).__init__(cr, uid, name, context)
         self.list_config = []
-        self.localcontext.update({
-            "time": time,
-            "get_data": self._get_data,
-            "get_date_start": self._get_date_start,
-            "get_date_end": self._get_date_end,
-            "convert_datetime_utc": self._convert_datetime_utc,
-        })
+        self.localcontext.update(
+            {
+                "time": time,
+                "get_data": self._get_data,
+                "get_date_start": self._get_date_start,
+                "get_date_end": self._get_date_end,
+                "convert_datetime_utc": self._convert_datetime_utc,
+            }
+        )
 
     def set_context(self, objects, data, ids, report_type=None):
         self.form = data["form"]
@@ -57,20 +60,18 @@ class Parser(report_sxw.rml_parse):
 
     def _get_data(self):
         result = []
-        obj_data = self.pool.get(
-            "l10n_id.djbc_plb_lap_pemasukan")
+        obj_data = self.pool.get("l10n_id.djbc_plb_lap_pemasukan")
 
         criteria = [
             ("tgl_penerimaan", ">=", self.date_start),
             ("tgl_penerimaan", "<=", self.date_end),
-            ("warehouse_id", "in", self.warehouse_ids)
+            ("warehouse_id", "in", self.warehouse_ids),
         ]
 
         data_ids = obj_data.search(self.cr, self.uid, criteria)
 
         if data_ids:
-            for no, data in enumerate(
-                    obj_data.browse(self.cr, self.uid, data_ids)):
+            for no, data in enumerate(obj_data.browse(self.cr, self.uid, data_ids)):
                 res = {
                     "no": no + 1,
                     "jenis_dokumen": data.jenis_dokumen,
@@ -86,7 +87,7 @@ class Parser(report_sxw.rml_parse):
                     "nilai": data.nilai,
                     "nilai_po": data.nilai_po,
                     "pemilik_barang": data.pemilik_barang,
-                    "kondisi_barang": "-"
+                    "kondisi_barang": "-",
                 }
                 result.append(res)
         return result

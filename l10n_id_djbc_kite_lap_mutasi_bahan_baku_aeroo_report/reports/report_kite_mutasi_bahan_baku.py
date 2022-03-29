@@ -3,24 +3,25 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import time
-from openerp.report import report_sxw
-import pytz
-import logging
 from datetime import datetime
+
+import pytz
+from openerp.report import report_sxw
 
 
 class Parser(report_sxw.rml_parse):
-
     def __init__(self, cr, uid, name, context):
         super(Parser, self).__init__(cr, uid, name, context)
         self.list_config = []
-        self.localcontext.update({
-            "time": time,
-            "get_date_start": self._get_date_start,
-            "get_date_end": self._get_date_end,
-            "get_data": self._get_data,
-            "convert_datetime_utc": self._convert_datetime_utc,
-        })
+        self.localcontext.update(
+            {
+                "time": time,
+                "get_date_start": self._get_date_start,
+                "get_date_end": self._get_date_end,
+                "get_data": self._get_data,
+                "convert_datetime_utc": self._convert_datetime_utc,
+            }
+        )
 
     def set_context(self, objects, data, ids, report_type=None):
         self.form = data["form"]
@@ -53,23 +54,16 @@ class Parser(report_sxw.rml_parse):
 
     def _get_data(self):
         data = []
-        obj_data = self.pool.get(
-            "l10n_id.djbc_kite_lap_mutasi_bahan_baku")
+        obj_data = self.pool.get("l10n_id.djbc_kite_lap_mutasi_bahan_baku")
         no = 1
 
-        criteria = [
-            ("warehouse_id", "in", self.warehouse_ids)
-        ]
+        criteria = [("warehouse_id", "in", self.warehouse_ids)]
 
         data_ids = obj_data.search(self.cr, self.uid, criteria)
 
         if data_ids:
-            context = {
-                "date_start": self.date_start,
-                "date_end": self.date_end
-            }
-            for data_id in obj_data.browse(
-                    self.cr, self.uid, data_ids, context):
+            context = {"date_start": self.date_start, "date_end": self.date_end}
+            for data_id in obj_data.browse(self.cr, self.uid, data_ids, context):
                 product_id = data_id.product_id
                 product_name = product_id and product_id.name or "-"
 

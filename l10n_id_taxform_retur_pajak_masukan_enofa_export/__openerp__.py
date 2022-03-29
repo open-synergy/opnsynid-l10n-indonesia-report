@@ -5,8 +5,8 @@
     "name": "Indonesia - Retur Pajak Masukan E-Nofa Export",
     "version": "8.0.1.0.0",
     "license": "AGPL-3",
-    "author": "OpenSynergy Indonesia",
-    "website": "https://opensynergy-indonesia.com",
+    "author": "OpenSynergy Indonesia, PT. Simetri Sinergi Indonesia",
+    "website": "https://simetri-sinergi.id",
     "category": "Localization",
     "depends": [
         "l10n_id_taxform_retur_pajak_masukan",

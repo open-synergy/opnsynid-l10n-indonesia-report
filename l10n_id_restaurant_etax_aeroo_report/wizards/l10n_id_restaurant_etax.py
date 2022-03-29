@@ -2,10 +2,11 @@
 # Copyright 2018 OpenSynergy Indonesia
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import api, models, fields
 from datetime import datetime
-from openerp.tools.translate import _
+
+from openerp import api, fields, models
 from openerp.exceptions import Warning as UserError
+from openerp.tools.translate import _
 
 
 class RestaurantEtax(models.TransientModel):
@@ -32,19 +33,13 @@ class RestaurantEtax(models.TransientModel):
     output_format = fields.Selection(
         string="Output Format",
         required=True,
-        selection=[
-            ("csv", "CSV"),
-            ("ods", "ODS"),
-            ("xls", "XLS")
-        ],
+        selection=[("csv", "CSV"), ("ods", "ODS"), ("xls", "XLS")],
         default="csv",
     )
 
-    @api.constrains(
-        "date_start", "date_end")
+    @api.constrains("date_start", "date_end")
     def _check_date(self):
-        strWarning = _(
-            "Date start must be greater than date end")
+        strWarning = _("Date start must be greater than date end")
         if self.date_start and self.date_end:
             if self.date_start > self.date_end:
                 raise UserError(strWarning)
@@ -52,31 +47,31 @@ class RestaurantEtax(models.TransientModel):
     @api.multi
     def action_print_csv(self):
         datas = {}
-        datas['form'] = self.read()[0]
+        datas["form"] = self.read()[0]
         return {
-            'type': 'ir.actions.report.xml',
-            'report_name': "aeroo_reportRestaurantEtaxCSV",
-            'datas': datas,
+            "type": "ir.actions.report.xml",
+            "report_name": "aeroo_reportRestaurantEtaxCSV",
+            "datas": datas,
         }
 
     @api.multi
     def action_print_ods(self):
         datas = {}
-        datas['form'] = self.read()[0]
+        datas["form"] = self.read()[0]
         return {
-            'type': 'ir.actions.report.xml',
-            'report_name': "aeroo_reportRestaurantEtaxODS",
-            'datas': datas,
+            "type": "ir.actions.report.xml",
+            "report_name": "aeroo_reportRestaurantEtaxODS",
+            "datas": datas,
         }
 
     @api.multi
     def action_print_xls(self):
         datas = {}
-        datas['form'] = self.read()[0]
+        datas["form"] = self.read()[0]
         return {
-            'type': 'ir.actions.report.xml',
-            'report_name': "aeroo_reportRestaurantEtaxXLS",
-            'datas': datas,
+            "type": "ir.actions.report.xml",
+            "report_name": "aeroo_reportRestaurantEtaxXLS",
+            "datas": datas,
         }
 
     @api.multi

@@ -11,19 +11,19 @@ class KBLapMutasiRejectScrapWizard(models.TransientModel):
     @api.multi
     def action_print_xls(self):
         datas = {}
-        datas['form'] = self.read()[0]
+        datas["form"] = self.read()[0]
         return {
-            'type': 'ir.actions.report.xml',
-            'report_name': "aeroo_reportLapRejectScrapXls",
-            'datas': datas,
+            "type": "ir.actions.report.xml",
+            "report_name": "aeroo_reportLapRejectScrapXls",
+            "datas": datas,
         }
 
     @api.multi
     def action_print_ods(self):
         datas = {}
-        datas['form'] = self.read()[0]
+        datas["form"] = self.read()[0]
         return {
-            'type': 'ir.actions.report.xml',
-            'report_name': "aeroo_reportLapRejectScrapOds",
-            'datas': datas,
+            "type": "ir.actions.report.xml",
+            "report_name": "aeroo_reportLapRejectScrapOds",
+            "datas": datas,
         }

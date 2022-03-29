@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" ?>
 <openerp>
     <data>
         <record id="djbc_kb_lap_reject_scrap_ods_report" model="ir.actions.report.xml">
@@ -8,12 +8,16 @@
             <field name="report_name">aeroo_reportLapRejectScrapOds</field>
             <field name="report_type">aeroo</field>
             <field name="in_format">oo-ods</field>
-            <field name="out_format" ref="report_aeroo.report_mimetypes_ods_ods"/>
-            <field name="parser_loc">l10n_id_djbc_kb_lap_mutasi_reject_scrap_aeroo_report/reports/report_lap_mutasi_reject_scrap.py</field>
-            <field name="report_rml">l10n_id_djbc_kb_lap_mutasi_reject_scrap_aeroo_report/reports/report_lap_mutasi_reject_scrap.ods</field>
+            <field name="out_format" ref="report_aeroo.report_mimetypes_ods_ods" />
+            <field
+                name="parser_loc"
+            >l10n_id_djbc_kb_lap_mutasi_reject_scrap_aeroo_report/reports/report_lap_mutasi_reject_scrap.py</field>
+            <field
+                name="report_rml"
+            >l10n_id_djbc_kb_lap_mutasi_reject_scrap_aeroo_report/reports/report_lap_mutasi_reject_scrap.ods</field>
             <field name="parser_state">loc</field>
             <field name="tml_source">file</field>
-        </record>  
+        </record>
 
         <record id="djbc_kb_lap_reject_scrap_xls_report" model="ir.actions.report.xml">
             <field name="name">Lap. Mutasi Reject Scrap</field>
@@ -22,12 +26,15 @@
             <field name="report_name">aeroo_reportLapRejectScrapXls</field>
             <field name="report_type">aeroo</field>
             <field name="in_format">oo-ods</field>
-            <field name="out_format" ref="report_aeroo.report_mimetypes_xls_odt"/>
-            <field name="parser_loc">l10n_id_djbc_kb_lap_mutasi_reject_scrap_aeroo_report/reports/report_lap_mutasi_reject_scrap.py</field>
-            <field name="report_rml">l10n_id_djbc_kb_lap_mutasi_reject_scrap_aeroo_report/reports/report_lap_mutasi_reject_scrap.ods</field>
+            <field name="out_format" ref="report_aeroo.report_mimetypes_xls_odt" />
+            <field
+                name="parser_loc"
+            >l10n_id_djbc_kb_lap_mutasi_reject_scrap_aeroo_report/reports/report_lap_mutasi_reject_scrap.py</field>
+            <field
+                name="report_rml"
+            >l10n_id_djbc_kb_lap_mutasi_reject_scrap_aeroo_report/reports/report_lap_mutasi_reject_scrap.ods</field>
             <field name="parser_state">loc</field>
             <field name="tml_source">file</field>
-        </record>  
+        </record>
     </data>
 </openerp>
-

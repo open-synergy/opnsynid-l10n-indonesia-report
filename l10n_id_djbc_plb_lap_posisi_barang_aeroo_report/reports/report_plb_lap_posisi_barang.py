@@ -2,19 +2,21 @@
 # Copyright 2018 OpenSynergy Indonesia
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp.report import report_sxw
 from datetime import datetime
+
 import pytz
+from openerp.report import report_sxw
 
 
 class Parser(report_sxw.rml_parse):
-
     def __init__(self, cr, uid, name, context):
         super(Parser, self).__init__(cr, uid, name, context)
-        self.localcontext.update({
-            "get_data": self._get_data,
-            "convert_datetime_utc": self._convert_datetime_utc,
-        })
+        self.localcontext.update(
+            {
+                "get_data": self._get_data,
+                "convert_datetime_utc": self._convert_datetime_utc,
+            }
+        )
 
     def set_context(self, objects, data, ids, report_type=None):
         self.form = data["form"]
@@ -39,10 +41,9 @@ class Parser(report_sxw.rml_parse):
             criteria = [
                 ("lot_id", "=", lot_id),
                 ("date", "<=", self.date_end),
-                ("date", ">=", self.date_start)
+                ("date", ">=", self.date_start),
             ]
-            cum_ids = obj_cum.search(
-                self.cr, self.uid, criteria)
+            cum_ids = obj_cum.search(self.cr, self.uid, criteria)
 
             if len(cum_ids) > 0:
                 final_lot_ids.append(lot_id)
@@ -54,7 +55,8 @@ class Parser(report_sxw.rml_parse):
                 ("date", "<=", self.date_end),
             ]
             cum_ids = obj_cum.search(
-                self.cr, self.uid, criteria, order="date desc", limit=1)
+                self.cr, self.uid, criteria, order="date desc", limit=1
+            )
 
             if len(cum_ids) == 0:
                 index += 1
@@ -68,9 +70,7 @@ class Parser(report_sxw.rml_parse):
             index += 1
             final_lot_ids.append(lot_id)
 
-        criteria = [
-            ("in_lot_id", "in", final_lot_ids)
-        ]
+        criteria = [("in_lot_id", "in", final_lot_ids)]
         index = 0
 
         # TODO: Refactor
@@ -127,19 +127,23 @@ class Parser(report_sxw.rml_parse):
         LEFT JOIN (
             SELECT *
             FROM l10n_id_djbc_lap_posisi_barang_helper_out_common AS b1
-            WHERE b1.picking_date <= '%s'
+            WHERE b1.picking_date <= '{}'
         ) AS b ON a.lot_id = b.lot_id
         LEFT JOIN (
             SELECT c1.lot_id,
                     SUM(c1.cost) AS total_cost,
                     SUM(c1.quantity) AS total_qty
             FROM l10n_id_djbc_lap_posisi_barang_helper_out_common AS c1
-            WHERE c1.picking_date <= '%s'
+            WHERE c1.picking_date <= '{}'
             GROUP BY c1.lot_id
         ) AS c
             ON a.lot_id = c.lot_id
-        WHERE a.lot_id IN %s
-        """ % (self.date_end, self.date_end, tup_final_lot_ids)
+        WHERE a.lot_id IN {}
+        """.format(
+            self.date_end,
+            self.date_end,
+            tup_final_lot_ids,
+        )
         # pylint: disable=locally-disabled, sql-injection
         self.cr.execute(sql)
         datas = self.cr.dictfetchall()
@@ -150,40 +154,37 @@ class Parser(report_sxw.rml_parse):
                     show_bal = True
                     no += 1
                 else:
-                    if datas[index]["in_lot_id"] != \
-                            datas[index-1]["in_lot_id"]:
+                    if datas[index]["in_lot_id"] != datas[index - 1]["in_lot_id"]:
                         show_bal = True
                         no += 1
 
-                in_picking_date = data["in_picking_date"] and \
-                    self._convert_datetime_utc(data["in_picking_date"]) or ""
+                in_picking_date = (
+                    data["in_picking_date"]
+                    and self._convert_datetime_utc(data["in_picking_date"])
+                    or ""
+                )
 
-                out_picking_date = data["out_picking_date"] and \
-                    self._convert_datetime_utc(data["out_picking_date"]) or ""
+                out_picking_date = (
+                    data["out_picking_date"]
+                    and self._convert_datetime_utc(data["out_picking_date"])
+                    or ""
+                )
 
                 res = {
                     "no": show_bal and no,
-                    "in_document_type": show_bal and
-                    data["in_document_type_name"] or "",
-                    "in_document_number": show_bal and
-                    data["in_document_name"] or "",
-                    "in_document_date": show_bal and
-                    data["in_document_date"] or "",
-                    "in_picking_date": show_bal and
-                    in_picking_date,
-                    "in_product_code": show_bal and
-                    data["in_product_code"] or "",
+                    "in_document_type": show_bal
+                    and data["in_document_type_name"]
+                    or "",
+                    "in_document_number": show_bal and data["in_document_name"] or "",
+                    "in_document_date": show_bal and data["in_document_date"] or "",
+                    "in_picking_date": show_bal and in_picking_date,
+                    "in_product_code": show_bal and data["in_product_code"] or "",
                     "in_lot_id": data["in_lot_id"],
-                    "in_lot_name": show_bal and
-                    data["in_lot_name"] or "",
-                    "in_product_name": show_bal and
-                    data["in_product_name"] or "",
-                    "in_quantity": show_bal and
-                    data["in_quantity"] or "",
-                    "in_uom_name": show_bal and
-                    data["in_uom_name"] or "",
-                    "in_cost": show_bal and
-                    data["in_cost"] or "",
+                    "in_lot_name": show_bal and data["in_lot_name"] or "",
+                    "in_product_name": show_bal and data["in_product_name"] or "",
+                    "in_quantity": show_bal and data["in_quantity"] or "",
+                    "in_uom_name": show_bal and data["in_uom_name"] or "",
+                    "in_cost": show_bal and data["in_cost"] or "",
                     "out_document_type": data["out_document_type_name"] or "",
                     "out_document_number": data["out_document_name"] or "",
                     "out_document_date": data["out_document_date"] or "",
@@ -191,14 +192,13 @@ class Parser(report_sxw.rml_parse):
                     "out_product_code": data["out_product_code"] or "",
                     "out_lot_name": data["out_lot_name"] or "",
                     "out_product_name": data["out_product_name"] or "",
-                    "out_quantity": data["out_quantity"] and
-                    (data["out_quantity"] * -1.0) or "",
+                    "out_quantity": data["out_quantity"]
+                    and (data["out_quantity"] * -1.0)
+                    or "",
                     "out_uom_name": data["out_uom_name"] or "",
                     "out_cost": data["out_cost"] or "",
-                    "total_quantity": show_bal and
-                    data["total_quantity"] or 0.0,
-                    "total_cost": show_bal and
-                    data["total_cost"] or 0.0,
+                    "total_quantity": show_bal and data["total_quantity"] or 0.0,
+                    "total_cost": show_bal and data["total_cost"] or 0.0,
                 }
                 result.append(res)
                 index += 1

@@ -11,19 +11,19 @@ class KBLapPengeluaranWizard(models.TransientModel):
     @api.multi
     def action_print_xls(self):
         datas = {}
-        datas['form'] = self.read()[0]
+        datas["form"] = self.read()[0]
         return {
-            'type': 'ir.actions.report.xml',
-            'report_name': "aeroo_reportLapPengeluaranXls",
-            'datas': datas,
+            "type": "ir.actions.report.xml",
+            "report_name": "aeroo_reportLapPengeluaranXls",
+            "datas": datas,
         }
 
     @api.multi
     def action_print_ods(self):
         datas = {}
-        datas['form'] = self.read()[0]
+        datas["form"] = self.read()[0]
         return {
-            'type': 'ir.actions.report.xml',
-            'report_name': "aeroo_reportLapPengeluaranOds",
-            'datas': datas,
+            "type": "ir.actions.report.xml",
+            "report_name": "aeroo_reportLapPengeluaranOds",
+            "datas": datas,
         }

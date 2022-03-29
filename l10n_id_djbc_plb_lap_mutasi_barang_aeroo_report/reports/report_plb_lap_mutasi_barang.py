@@ -3,22 +3,24 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import time
-from openerp.report import report_sxw
-import pytz
 from datetime import datetime
+
+import pytz
+from openerp.report import report_sxw
 
 
 class Parser(report_sxw.rml_parse):
-
     def __init__(self, cr, uid, name, context):
         super(Parser, self).__init__(cr, uid, name, context)
         self.list_config = []
-        self.localcontext.update({
-            "time": time,
-            "get_data": self._get_data,
-            "get_date_start": self._get_date_start,
-            "get_date_end": self._get_date_end,
-        })
+        self.localcontext.update(
+            {
+                "time": time,
+                "get_data": self._get_data,
+                "get_date_start": self._get_date_start,
+                "get_date_end": self._get_date_end,
+            }
+        )
 
     def set_context(self, objects, data, ids, report_type=None):
         self.form = data["form"]
@@ -51,23 +53,16 @@ class Parser(report_sxw.rml_parse):
 
     def _get_data(self):
         data = []
-        obj_data = self.pool.get(
-            "l10n_id.djbc_plb_lap_mutasi_barang")
+        obj_data = self.pool.get("l10n_id.djbc_plb_lap_mutasi_barang")
         no = 1
 
-        criteria = [
-            ("warehouse_id", "in", self.warehouse_ids)
-        ]
+        criteria = [("warehouse_id", "in", self.warehouse_ids)]
 
         data_ids = obj_data.search(self.cr, self.uid, criteria)
 
         if data_ids:
-            context = {
-                "date_start": self.date_start,
-                "date_end": self.date_end
-            }
-            for data_id in obj_data.browse(
-                    self.cr, self.uid, data_ids, context):
+            context = {"date_start": self.date_start, "date_end": self.date_end}
+            for data_id in obj_data.browse(self.cr, self.uid, data_ids, context):
                 product_id = data_id.product_id
                 product_name = product_id and product_id.name or "-"
 
@@ -85,7 +80,7 @@ class Parser(report_sxw.rml_parse):
                     "stock_opname": data_id.stock_opname,
                     "saldo_akhir": data_id.saldo_akhir,
                     "selisih": data_id.selisih,
-                    "keterangan": data_id.keterangan
+                    "keterangan": data_id.keterangan,
                 }
                 data.append(res)
                 no += 1

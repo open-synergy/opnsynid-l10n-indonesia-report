@@ -11,19 +11,19 @@ class KBLapMutasiBarangJadiWizard(models.TransientModel):
     @api.multi
     def action_print_xls(self):
         datas = {}
-        datas['form'] = self.read()[0]
+        datas["form"] = self.read()[0]
         return {
-            'type': 'ir.actions.report.xml',
-            'report_name': "aeroo_reportLapBarangJadiXls",
-            'datas': datas,
+            "type": "ir.actions.report.xml",
+            "report_name": "aeroo_reportLapBarangJadiXls",
+            "datas": datas,
         }
 
     @api.multi
     def action_print_ods(self):
         datas = {}
-        datas['form'] = self.read()[0]
+        datas["form"] = self.read()[0]
         return {
-            'type': 'ir.actions.report.xml',
-            'report_name': "aeroo_reportLapBarangJadiOds",
-            'datas': datas,
+            "type": "ir.actions.report.xml",
+            "report_name": "aeroo_reportLapBarangJadiOds",
+            "datas": datas,
         }
